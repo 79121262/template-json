@@ -22,39 +22,6 @@ json template use json to json
 </dependency>
 ```
 
-定义模板：
-
-```json 
-{
-  "x-if": {
-    "expression": "1==1",
-    "key": "re",
-    "value": {
-      "code": "${data.code}"
-    }
-  },
-  "x-list": {
-    "expression": "item as data.childBankList",
-    "key": "childBankList",
-    "value": {
-      "companyName": "${item.bankBranchName}",
-      "createTime": "${item.createTime}(dateformat[yyyy-MM-dd HH:mm:ss,yyyy-MM])"
-    }
-  },
-  "accountNumbers": [
-    {
-      "reserved": "x-list",
-      "expression": "item as data.childBankList",
-      "value":  "${item.accountNumber}"
-    }
-  ],
-  "type": ["...data.type"],
-  "${data.childBankList[1].companyName}": "${data.childBankList[1].currency}",
-  "parentAccount": "${data.parentAccount}",
-  "...data.parentBank": "..."
-}
-```
-
 例如需要转换的数据：
 
 ```json
@@ -93,6 +60,41 @@ json template use json to json
   }
 }
 ```
+
+
+定义模板：
+
+```json 
+{
+  "x-if": {
+    "expression": "1==1",
+    "key": "re",
+    "value": {
+      "code": "${data.code}"
+    }
+  },
+  "x-list": {
+    "expression": "item as data.childBankList",
+    "key": "childBankList",
+    "value": {
+      "companyName": "${item.bankBranchName}",
+      "createTime": "${item.createTime}(dateformat[yyyy-MM-dd HH:mm:ss,yyyy-MM])"
+    }
+  },
+  "accountNumbers": [
+    {
+      "reserved": "x-list",
+      "expression": "item as data.childBankList",
+      "value":  "${item.accountNumber}"
+    }
+  ],
+  "type": ["...data.type"],
+  "${data.childBankList[1].companyName}": "${data.childBankList[1].currency}",
+  "parentAccount": "${data.parentAccount}",
+  "...data.parentBank": "..."
+}
+```
+
 
 #### 使用示例
 
