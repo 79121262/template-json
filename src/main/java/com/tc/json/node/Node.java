@@ -37,7 +37,7 @@ public class Node extends NodeComponent {
     public void print(Map resultJson) {
         resultJson.put(getKey(),getValue());
 
-        System.out.println(getKey()+getValue());
+        //System.out.println(getKey()+getValue());
     }
 
 

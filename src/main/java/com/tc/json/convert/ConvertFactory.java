@@ -56,9 +56,4 @@ public class ConvertFactory {
         }
         return null;
     }
-
-    public static void main(String[] args) {
-        System.out.println(getParam(getFunction(" ${data[0].abac}(dateformate[YYYY-MMM-DD,YYYY-MMM])")));
-    }
-
 }
