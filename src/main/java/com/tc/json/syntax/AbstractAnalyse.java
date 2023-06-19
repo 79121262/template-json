@@ -5,8 +5,8 @@ import com.tc.json.node.NodeComponent;
 
 /**
  * @author tc
- * @date 2023/6/17
- * @email tiancai@citycloud.com.cn
+ * Date 2023/6/17
+ * Email 79121262@qq.com
  */
 public class AbstractAnalyse {
 

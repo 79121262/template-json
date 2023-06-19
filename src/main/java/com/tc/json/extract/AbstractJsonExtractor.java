@@ -53,6 +53,7 @@ public abstract class AbstractJsonExtractor {
 
     /**
      * 获得json内容
+     * @return Object
      */
     public Object getJsonValue(Object jsonValue, String keyStr) {
         String[] keyArray = keyStr.split("\\.");
