@@ -63,8 +63,8 @@ public class Parse {
         if (template instanceof Collection) {
             Collection resultArray = new ArrayList();
             Collection tpl = (Collection) template;
+            int i = 0;
             for (Object o : tpl) {
-                int i = 0;
                 AnalyseFactory.getInstance(++i, o).analyse(++i, o, data, this).print(resultArray);
             }
 
