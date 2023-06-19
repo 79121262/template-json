@@ -1,6 +1,6 @@
 # template-json
 
-json template use json to json
+json template use json convert  to json
 
 ##### 主要功能： 根据模板对数据进行转换
 
