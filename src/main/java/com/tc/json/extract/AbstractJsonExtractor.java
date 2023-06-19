@@ -79,7 +79,7 @@ public abstract class AbstractJsonExtractor {
     }
 
     public boolean ifSupport(String text){
-        if (StringUtils.isNotBlank(text) && text.trim().startsWith("${") && text.trim().endsWith("}")){
+        if (StringUtils.isNotBlank(text) && text.trim().startsWith("${") && text.trim().contains("}")){
             return true;
         }
         return false;

@@ -1,30 +1,28 @@
 {
   "x-if": {
     "expression": "1==1",
-    "key": "data1",
+    "key": "re",
     "value": {
-      "dafffta": "${data.code}"
+      "code": "${data.code}"
     }
   },
-
-  "data012": {
-    "x-if": {
-      "expression": "1==1",
-      "key": "data12",
-      "value": {
-        "fdsss": "${data.code}"
-      }
-    }
-  },
-
   "x-list": {
     "expression": "item as data.childBankList",
-    "key": "list",
+    "key": "childBankList",
     "value": {
-      "companyName": "${item.bankBranchName}"
+      "companyName": "${item.bankBranchName}",
+      "createTime": "${item.createTime}(dateformat[yyyy-MM-dd HH:mm:ss,yyyy-MM])"
     }
   },
- "${data.code}":"${data.childBankList[1].bankBranchName}",
-  "---------------":"${data.childBankList[1].bankBranchName}",
+  "accountNumbers": [
+    {
+      "reserved": "x-list",
+      "expression": "item as data.childBankList",
+      "value":  "${item.accountNumber}"
+    }
+  ],
+  "type": ["...data.type"],
+  "${data.childBankList[1].companyName}": "${data.childBankList[1].currency}",
+  "parentAccount": "${data.parentAccount}",
   "...data.parentBank": "..."
 }

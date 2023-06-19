@@ -27,7 +27,7 @@ public class ConvertFactory {
             return null;
         }
 
-        if (function.startsWith("dateformate")) {
+        if (function.startsWith("dateformat")) {
             String param1 = getParam(function);
             String[] split = param1.split(",");
             if (split.length < 2) {
