@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "code": 0,
+  "message": null,
+  "data": [
+    {
+      "title": "案件处置数",
+      "num": "0"
+    },
+    {
+      "title": "问题登记数",
+      "num": "1"
+    },
+    {
+      "title": "案件补采数",
+      "num": "0"
+    },
+    {
+      "title": "案件核查数",
+      "num": "0"
+    },
+    {
+      "title": "案件核实数",
+      "num": "0"
+    }
+  ],
+  "attachments": null
+}

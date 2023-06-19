@@ -1,0 +1,3 @@
+[
+  "${data[0]}(dateformate[yyyy-MM-dd HH:mm:ss,yyyy-MM-dd])","${data[1]}","${data[2]}"
+]

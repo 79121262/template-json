@@ -1,0 +1,30 @@
+{
+  "x-if": {
+    "expression": "1==1",
+    "key": "data1",
+    "value": {
+      "dafffta": "${data.code}"
+    }
+  },
+
+  "data012": {
+    "x-if": {
+      "expression": "1==1",
+      "key": "data12",
+      "value": {
+        "fdsss": "${data.code}"
+      }
+    }
+  },
+
+  "x-list": {
+    "expression": "item as data.childBankList",
+    "key": "list",
+    "value": {
+      "companyName": "${item.bankBranchName}"
+    }
+  },
+ "${data.code}":"${data.childBankList[1].bankBranchName}",
+  "---------------":"${data.childBankList[1].bankBranchName}",
+  "...data.parentBank": "..."
+}

@@ -1,0 +1,8 @@
+{
+  "childBankList": {
+    "abc": "${data.childBankList[0].recordId}",
+    "abcff": [
+      "${data.parentAccount}"
+    ]
+  }
+}

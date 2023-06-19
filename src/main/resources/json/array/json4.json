@@ -1,0 +1,12 @@
+[
+  {
+    "reserved":"x-list",
+    "expression": "item as data.data",
+    "key": "...",
+    "value": {
+      "name": "${item.title}",
+      "num": "${item.num}"
+    }
+  }
+]
+
