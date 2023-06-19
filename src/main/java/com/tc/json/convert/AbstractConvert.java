@@ -8,7 +8,7 @@ package com.tc.json.convert;
  *
  * ${data[0].abac}(substring[1,2])  暂未实现
  *
- * ${data[0].abac}(dateformat[YYYY-MMM-DD,YYYY-MMM])   {@link json.convert.DateConvert}
+ * ${data[0].abac}(dateformat[YYYY-MMM-DD,YYYY-MMM])   {@link com.tc.json.convert.DateConvert}
  *
  */
 public abstract class AbstractConvert implements Convert {
