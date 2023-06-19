@@ -2,7 +2,7 @@
 
 json template use json to json
 
-##### 主要共功能： 根据模板将数据进行转换
+##### 主要功能： 根据模板对数据进行转换
 
 ##### 支持的语法： if、list、展开符“...”
 
@@ -18,7 +18,7 @@ json template use json to json
 <dependency>
     <groupId>io.github.79121262</groupId>
     <artifactId>template-json</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 
