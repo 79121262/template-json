@@ -6,9 +6,9 @@
       "code": "${data.code}"
     }
   },
-  "x-list": {
+  "childBankList": {
+    "reserved": "x-list",
     "expression": "item as data.childBankList",
-    "key": "childBankList",
     "value": {
       "companyName": "${item.bankBranchName}",
       "createTime": "${item.createTime}(dateformat[yyyy-MM-dd HH:mm:ss,yyyy-MM])"
@@ -18,10 +18,20 @@
     {
       "reserved": "x-list",
       "expression": "item as data.childBankList",
-      "value":  "${item.accountNumber}"
+      "value": [
+        {
+          "reserved": "x-list",
+          "expression": "item2 as item.address",
+          "value": {
+            "first": "${item2.first}"
+          }
+        }
+      ]
     }
   ],
-  "type": ["...data.type"],
+  "type": [
+    "...data.type"
+  ],
   "${data.childBankList[1].companyName}": "${data.childBankList[1].currency}",
   "parentAccount": "${data.parentAccount}",
   "...data.parentBank": "..."

@@ -1,7 +1,12 @@
 {
   "code": "XY202103240002",
   "parentAccount": "77120122000016235",
-  "type": [1,2,3,4],
+  "type": [
+    1,
+    2,
+    3,
+    4
+  ],
   "parentBranch": "xxxxx科技支行 ZONG行",
   "childBankList": [
     {
@@ -10,7 +15,17 @@
       "accountNumber": "77120122000016388",
       "createTime": "2021-03-24 13:56:12",
       "currency": "JPS",
-      "id": "267"
+      "id": "267",
+      "address": [
+        {
+          "first": "海淀区",
+          "second": "房山区"
+        },
+        {
+          "first": "海淀区2",
+          "second": "房山区3"
+        }
+      ]
     },
     {
       "bankBranchName": "XFAE 支行",
@@ -18,7 +33,17 @@
       "accountNumber": "77120122000016500",
       "createTime": "2021-03-24 13:56:12",
       "currency": "CNY",
-      "id": "268"
+      "id": "268",
+      "address": [
+        {
+          "first": "平台区",
+          "second": "宣武区"
+        },
+        {
+          "first": "平台区2",
+          "second": "宣武区3"
+        }
+      ]
     }
   ],
   "parentBank": {

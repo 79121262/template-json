@@ -52,7 +52,7 @@ public class IfAnalyse extends  AbstractAnalyse {
         Object ifItem = template.get(IF_NODE_VALUE);
         String key = (String)template.get(IF_NODE_KEY);
         if (StringUtils.isBlank(key)) {
-            throw new JsonTplException(template + "中" + IF_NODE_KEY + "值不能为空");
+            key = nodeName;
         }
         if (ifItem == null) {
             throw new JsonTplException(template + "中" + IF_NODE_VALUE + "值不能为空");

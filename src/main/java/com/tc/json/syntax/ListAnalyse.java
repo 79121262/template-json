@@ -5,36 +5,35 @@ import com.tc.json.exception.JsonTplException;
 import com.tc.json.node.ArraysNode;
 import com.tc.json.node.Node;
 import com.tc.json.node.NodeComponent;
+import com.tc.json.utils.StringUtils;
 
 import java.util.*;
 
 /**
  * 对象：
- *   {
- *   "x-list": {
- *     "expression": "item as data.childBankList",
- *     "key": "list",
- *     "value": {
- *       "companyName": "${item.bankBranchName}"
- *     }
- *   }
- *   }
- *
+ * {
+ * "x-list": {
+ * "expression": "item as data.childBankList",
+ * "key": "list",
+ * "value": {
+ * "companyName": "${item.bankBranchName}"
+ * }
+ * }
+ * }
+ * <p>
  * 数组：
- *[
- *   {
- *     "reserved":"x-list",
- *     "expression": "item as data.data",
- *     "value": {
- *       "name": "${item.title}",
- *       "num": "${item.num}"
- *     }
- *   }
+ * [
+ * {
+ * "reserved":"x-list",
+ * "expression": "item as data.data",
+ * "value": {
+ * "name": "${item.title}",
+ * "num": "${item.num}"
+ * }
+ * }
  * ]
- *
- *
  */
-public class ListAnalyse extends  AbstractAnalyse {
+public class ListAnalyse extends AbstractAnalyse {
 
     private final static String LIST_NODE_EXPRESSION = "expression";
     private final static String LIST_NODE_KEY = "key";
@@ -43,16 +42,21 @@ public class ListAnalyse extends  AbstractAnalyse {
 
     public NodeComponent analyseArray(Integer nodeName, Object tpl, Object d, Parse parse) {
         Map template = (Map) tpl;
-        Collection objects = getObjects(template, d,parse);
+        Collection objects = getObjects(template, d, parse);
         return new ArraysNode(nodeName, objects);
     }
 
     @Override
-    public Node analyseObject(String nodeName, Object tpl, Object d,Parse parse) {
+    public Node analyseObject(String nodeName, Object tpl, Object d, Parse parse) {
         Map template = (Map) tpl;
-        Collection newArray = getObjects(template, d,parse);
+        Collection newArray = getObjects(template, d, parse);
         // list对象的key
         String listKey = (String) template.get(LIST_NODE_KEY);
+
+        if (StringUtils.isBlank(listKey)) {
+            listKey = nodeName;
+        }
+
         String ifNodeKey = parse.parseStringValue(d, listKey);
         return new Node(ifNodeKey, newArray);
     }
@@ -67,7 +71,7 @@ public class ListAnalyse extends  AbstractAnalyse {
         if (Objects.equals(itemKeyName, ROOT_KEY)) {
             throw new JsonTplException("循环子元素不能命名为：" + ROOT_KEY + ", [" + listStr + "]");
         }
-        Collection listArray = (Collection)parse.parseValue(data, listAry[1].trim());
+        Collection listArray = (Collection) parse.parseValue(data, listAry[1].trim());
         List newArray = new ArrayList();
         Object subTemplate = template.get(LIST_NODE_VALUE);
         if (listArray != null) {
@@ -76,7 +80,12 @@ public class ListAnalyse extends  AbstractAnalyse {
                 if (Objects.equals(subTemplate, itemKeyName)) {
                     newArray.add(o);
                 } else if (o instanceof Map) {
-                    newArray.add(parse.doParse(subTemplate, o));
+                    Object o1 = parse.doParse(subTemplate, o);
+                    if (o1 instanceof Collection) {
+                        newArray.addAll((Collection) o1);
+                    } else {
+                        newArray.add(o1);
+                    }
                 }
             }
         }

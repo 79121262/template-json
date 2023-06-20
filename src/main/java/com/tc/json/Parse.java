@@ -34,10 +34,10 @@ public class Parse {
      *
      * @param template
      * @param data
-     * @throws Exception
      * @return
+     * @throws Exception
      */
-    public Object parse(Object template, Object data) throws Exception {
+    public Object parse(Object template, Object data) {
         try {
             return doParse(template, data);
         } catch (Exception e) {
@@ -50,12 +50,16 @@ public class Parse {
         if (template == null) {
             return null;
         }
+
+
         if (template instanceof Map) {
             Map result = new HashMap();
             Map tpl = (Map) template;
+
             Set<String> keys = tpl.keySet();
             for (String itemKey : keys) {
-                AnalyseFactory.getInstance(itemKey, tpl).analyse(itemKey, tpl.get(itemKey), data, this).print(result);
+                Object innerTpl = tpl.get(itemKey);
+                AnalyseFactory.getInstance(itemKey, tpl, innerTpl).analyse(itemKey, innerTpl, data, this).print(result);
             }
             return result;
         }
@@ -64,10 +68,9 @@ public class Parse {
             Collection resultArray = new ArrayList();
             Collection tpl = (Collection) template;
             int i = 0;
-            for (Object o : tpl) {
-                AnalyseFactory.getInstance(++i, o).analyse(++i, o, data, this).print(resultArray);
+            for (Object innerTpl : tpl) {
+                AnalyseFactory.getInstance(++i, tpl, innerTpl).analyse(++i, innerTpl, data, this).print(resultArray);
             }
-
             return resultArray;
         }
         if (template instanceof String) {

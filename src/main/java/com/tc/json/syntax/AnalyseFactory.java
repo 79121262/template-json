@@ -16,24 +16,27 @@ public class AnalyseFactory {
     private final static String RESERVED = "reserved";
 
 
-    public static AbstractAnalyse getInstance(Object nodeName, Object tpl) {
+    public static AbstractAnalyse getInstance(Object nodeName, Object outTpl,Object innerTpl) {
         //String key 不进行转换
         if (nodeName instanceof String) { //对象
             String nodeNames = nodeName.toString();
             if (nodeNames.startsWith(DECONSTRUCTION_NODE_NAME)) {
                 return analyse.get(DECONSTRUCTION_NODE_NAME);
             }
-            if (tpl instanceof String) {
-                return analyse.get(PLAIN);
+            if (innerTpl instanceof Map) {
+                if(((Map<?, ?>) innerTpl).containsKey(RESERVED)){
+                    return analyse.get(((Map<?, ?>) innerTpl).get(RESERVED));
+                }
             }
+
             return analyse.containsKey(nodeNames) ? analyse.get(nodeNames) : analyse.get(DEFAULT);
         } else if (nodeName instanceof Integer) { //数组
-            if (tpl instanceof Map) {
-                Map it = (Map) tpl;
+            if (innerTpl instanceof Map) {
+                Map it = (Map) innerTpl;
                 return it.containsKey(RESERVED) ? analyse.get(it.get(RESERVED)) : analyse.get(DEFAULT);
             }
-            if (tpl instanceof String) {
-                if(((String) tpl).startsWith(DECONSTRUCTION_NODE_NAME)){
+            if (innerTpl instanceof String) {
+                if(((String) innerTpl).startsWith(DECONSTRUCTION_NODE_NAME)){
                     return analyse.get(DECONSTRUCTION_NODE_NAME);
                 }
                 return analyse.get(PLAIN);
