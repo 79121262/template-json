@@ -37,13 +37,12 @@ public class Parse {
      * @return
      * @throws Exception
      */
-    public Object parse(Object template, Object data) {
+    public Object parse(Object template, Object data) throws Exception {
         try {
             return doParse(template, data);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
-        return data;
     }
 
     public Object doParse(Object template, Object data) {
