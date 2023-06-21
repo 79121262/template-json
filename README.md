@@ -18,7 +18,7 @@ json template use json convert  to json
 <dependency>
     <groupId>io.github.79121262</groupId>
     <artifactId>template-json</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
 </dependency>
 ```
 
@@ -42,7 +42,17 @@ json template use json convert  to json
       "accountNumber": "77120122000016388",
       "createTime": "2021-03-24 13:56:12",
       "currency": "JPS",
-      "id": "267"
+      "id": "267",
+      "address": [
+        {
+          "first": "海淀区",
+          "second": "房山区"
+        },
+        {
+          "first": "海淀区2",
+          "second": "房山区3"
+        }
+      ]
     },
     {
       "bankBranchName": "XFAE 支行",
@@ -50,7 +60,17 @@ json template use json convert  to json
       "accountNumber": "77120122000016500",
       "createTime": "2021-03-24 13:56:12",
       "currency": "CNY",
-      "id": "268"
+      "id": "268",
+      "address": [
+        {
+          "first": "平台区",
+          "second": "宣武区"
+        },
+        {
+          "first": "平台区2",
+          "second": "宣武区3"
+        }
+      ]
     }
   ],
   "parentBank": {
@@ -73,9 +93,9 @@ json template use json convert  to json
       "code": "${data.code}"
     }
   },
-  "x-list": {
+  "childBankList": {
+    "reserved": "x-list",
     "expression": "item as data.childBankList",
-    "key": "childBankList",
     "value": {
       "companyName": "${item.bankBranchName}",
       "createTime": "${item.createTime}(dateformat[yyyy-MM-dd HH:mm:ss,yyyy-MM])"
@@ -85,10 +105,20 @@ json template use json convert  to json
     {
       "reserved": "x-list",
       "expression": "item as data.childBankList",
-      "value":  "${item.accountNumber}"
+      "value": [
+        {
+          "reserved": "x-list",
+          "expression": "item2 as item.address",
+          "value": {
+            "first": "${item2.first}"
+          }
+        }
+      ]
     }
   ],
-  "type": ["...data.type"],
+  "type": [
+    "...data.type"
+  ],
   "${data.childBankList[1].companyName}": "${data.childBankList[1].currency}",
   "parentAccount": "${data.parentAccount}",
   "...data.parentBank": "..."
