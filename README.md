@@ -156,8 +156,18 @@ public class ObjectTest {
 ```json
 {
   "accountNumbers": [
-    "77120122000016388",
-    "77120122000016500"
+    {
+      "first": "海淀区"
+    },
+    {
+      "first": "海淀区2"
+    },
+    {
+      "first": "平台区"
+    },
+    {
+      "first": "平台区2"
+    }
   ],
   "re": {
     "code": "XY202103240002"
